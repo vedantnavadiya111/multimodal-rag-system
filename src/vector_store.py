@@ -38,9 +38,11 @@ class ChromaVectorStore:
                 self.collection = self.client.get_collection(collection_name)
                 self.logger.info(f"Loaded existing collection: {collection_name}")
             except Exception:
+                # Create collection without default embedding function to avoid ONNX issues
                 self.collection = self.client.create_collection(
                     name=collection_name,
-                    metadata={"description": "MultiModal RAG documents"}
+                    metadata={"description": "MultiModal RAG documents"},
+                    embedding_function=None  # We'll provide embeddings ourselves
                 )
                 self.logger.info(f"Created new collection: {collection_name}")
                 
