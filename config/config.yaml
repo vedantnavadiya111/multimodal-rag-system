@@ -1,0 +1,42 @@
+# Model Configuration
+models:
+  text_embedding:
+    name: "sentence-transformers/all-MiniLM-L6-v2"
+    device: "cpu"  # Change to "cuda" if GPU available
+  
+  vision_model:
+    name: "Salesforce/blip-image-captioning-base"
+    device: "cpu"
+  
+  llm:
+    provider: "huggingface"
+    name: "microsoft/DialoGPT-medium"
+    max_tokens: 512
+
+# Vector Database
+vector_db:
+  provider: "chromadb"
+  persist_directory: "./data/chroma_db"
+  collection_name: "multimodal_documents"
+  embedding_function: "sentence-transformers"
+
+# Document Processing
+document_processing:
+  chunk_size: 1000
+  chunk_overlap: 200
+  max_file_size_mb: 50
+  supported_formats: ["pdf", "png", "jpg", "jpeg", "mp4", "avi"]
+
+# Application Settings
+app:
+  name: "MultiModal RAG System"
+  version: "1.0.0"
+  max_concurrent_uploads: 5
+  query_timeout_seconds: 30
+  
+# Streamlit Configuration
+streamlit:
+  page_title: "Academic Document AI Assistant"
+  page_icon: "🔍"
+  layout: "wide"
+  sidebar_state: "expanded"
