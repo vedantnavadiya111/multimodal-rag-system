@@ -28,7 +28,7 @@ class ChromaVectorStore:
             persist_dir = self.config['vector_db']['persist_directory']
             ensure_directory_exists(persist_dir)
             
-            # Initialize ChromaDB client
+            # Initialize ChromaDB client with settings to avoid issues
             self.client = chromadb.PersistentClient(path=persist_dir)
             
             # Get or create collection
@@ -39,11 +39,20 @@ class ChromaVectorStore:
                 self.logger.info(f"Loaded existing collection: {collection_name}")
             except Exception:
                 # Create collection without default embedding function to avoid ONNX issues
-                self.collection = self.client.create_collection(
-                    name=collection_name,
-                    metadata={"description": "MultiModal RAG documents"},
-                    embedding_function=None  # We'll provide embeddings ourselves
-                )
+                try:
+                    # Try to create without specifying embedding function
+                    self.collection = self.client.create_collection(
+                        name=collection_name,
+                        metadata={"description": "MultiModal RAG documents"}
+                    )
+                except Exception as e:
+                    # If that fails, try with explicit None embedding function
+                    self.logger.warning(f"First collection creation attempt failed: {e}")
+                    self.collection = self.client.create_collection(
+                        name=collection_name,
+                        metadata={"description": "MultiModal RAG documents"},
+                        embedding_function=None
+                    )
                 self.logger.info(f"Created new collection: {collection_name}")
                 
         except Exception as e:

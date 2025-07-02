@@ -1,8 +1,8 @@
 # Core RAG Framework
 langchain==0.1.0
-chromadb==0.4.18
+chromadb==0.4.15
 sentence-transformers==2.2.2
-onnxruntime>=1.16.0
+onnxruntime
 
 # Document Processing
 PyPDF2==3.0.1
@@ -12,8 +12,8 @@ opencv-python==4.8.1.78
 
 # Computer Vision & NLP
 transformers==4.36.2
-torch==2.1.1
-torchvision==0.16.1
+torch>=2.6.0
+torchvision>=0.19.0
 accelerate==0.25.0
 
 # Web Interface
