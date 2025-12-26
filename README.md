@@ -4,14 +4,6 @@ QueryCore is a Streamlit app for asking natural-language questions about your PD
 
 Created by Vedant Navadiya.
 
-## Screenshots
-
-![Models](Model.png)
-
-![Mistral Response](MistralResponse.png)
-
-![Question Answering](Question&Answer.png)
-
 ## Features
 
 - Upload and process one or more PDFs
