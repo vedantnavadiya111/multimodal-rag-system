@@ -21,6 +21,7 @@ This repository also includes a separate Streamlit PDF-chat app (QueryCore) unde
 ## Screenshots
 <img width="1882" height="943" alt="Screenshot 2025-08-09 144428" src="https://github.com/user-attachments/assets/42f907a9-75e6-44db-ae3d-39661ebe3abd" />
 <img width="1906" height="975" alt="Screenshot 2025-08-09 144318" src="https://github.com/user-attachments/assets/5a0792d1-b56f-4f61-ac5a-2eadb31da861" />
+
 ## Quickstart (Main project)
 
 ### 1) Clone
